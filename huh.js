@@ -4,7 +4,7 @@ const sing = {
     2: "scissors"
 };
 
-function getComputerChoice() {
+let computerChoice = function getComputerChoice() {
     let rnd = Math.floor(Math.random() * 3);
     return sing[rnd];
 }
@@ -48,7 +48,7 @@ function playGame() {
     for (let i = 0; i< 5; i++){
         let playerChoise = prompt("Write your sign: ").toLowerCase();        
         console.log("\n");
-        let res = playRound(playerChoise, getComputerChoice());
+        let res = playRound(playerChoise, computerChoice());
         console.log(res);
         if (res === "Player won") playerScore++;
         else if (res === "Player lose") computerScore++;
