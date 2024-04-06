@@ -1,61 +1,36 @@
-const sing = {
-    0: "rock",
-    1: "paper",
-    2: "scissors"
-};
+const container = document.querySelector("#container");
 
-let computerChoice = function getComputerChoice() {
-    let rnd = Math.floor(Math.random() * 3);
-    return sing[rnd];
-}
+const content = document.createElement("p");
+content.textContent = "Hey I'm red!";
+content.style.color = "red";
+container.appendChild(content);
 
 
+const blue = document.createElement("h3");
+blue.textContent = "I'm blue h3!";
+blue.style.color = "blue";
+container.appendChild(blue);
 
-function playRound(playerChoise, computerChoice){
-        console.log("Comp choise: " + computerChoice);
-        console.log("Player choise: " + playerChoise);
-    switch(playerChoise){
-        case "rock":
-            if (computerChoice == sing[0])
-                return "Tie";
-            else if (computerChoice == sing[1])
-                return "Player lose";
-            else 
-                return "Player won";
-            case "paper":
-            if (computerChoice == sing[0])
-                return "Player won";
-            else if (computerChoice == sing[1])
-                return "Tie";
-            else  
-                return "Player lose";
-            case "scissors":
-            if (computerChoice == sing[0])
-                return "Player lose";
-            else if (computerChoice == sing[1])
-                return "Player won";
-            else 
-                return "Tie";
-            default:
-                return "Ivalid sing";
-    }
-}
+const div = document.createElement("div");
+div.style.border = "1px solid black";
+div.style.background = "pink";
+
+const h1 = document.createElement("h1");
+h1.textContent = "I'm in a div";
 
 
-function playGame() {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i< 5; i++){
-        let playerChoise = prompt("Write your sign: ").toLowerCase();        
-        console.log("\n");
-        let res = playRound(playerChoise, computerChoice());
-        console.log(res);
-        if (res === "Player won") playerScore++;
-        else if (res === "Player lose") computerScore++;
-        console.log(`Score: player - ${playerScore} , comuter - ${computerScore}`);
-    }
-}
+const p = document.createElement("p");
+p.textContent = "MEE TOO!";
 
-playGame();
+div.appendChild(h1);
+div.appendChild(p);
+
+container.appendChild(div);
 
 
+const buttons = document.querySelectorAll("#container");
+buttons.forEach(button => {
+    button.addEventListener("click", (e) => {
+        alert(button.id);
+    })
+})
