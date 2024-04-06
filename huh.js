@@ -30,7 +30,7 @@ container.appendChild(div);
 
 const buttons = document.querySelectorAll("#container");
 buttons.forEach(button => {
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", () => {
         alert(button.id);
     })
 })
