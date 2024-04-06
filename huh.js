@@ -1,36 +1,61 @@
-const container = document.querySelector("#container");
+const sing = {
+    0: "rock",
+    1: "paper",
+    2: "scissors"
+};
+let playerScore = 0;
+let computerScore = 0;
 
-const content = document.createElement("p");
-content.textContent = "Hey I'm red!";
-content.style.color = "red";
-container.appendChild(content);
+let computerChoice = function getComputerChoice() {
+    let rnd = Math.floor(Math.random() * 3);
+    return sing[rnd];
+}
 
+function playRound(playerChoise, computerChoice){
+        console.log("Comp choise: " + computerChoice);
+        console.log("Player choise: " + playerChoise);
+    switch(playerChoise){
+        case "rock":
+            if (computerChoice == sing[0])
+                return "Tie";
+            else if (computerChoice == sing[1])
+                return "Player lose";
+            else 
+                return "Player won";
+            case "paper":
+            if (computerChoice == sing[0])
+                return "Player won";
+            else if (computerChoice == sing[1])
+                return "Tie";
+            else  
+                return "Player lose";
+            case "scissors":
+            if (computerChoice == sing[0])
+                return "Player lose";
+            else if (computerChoice == sing[1])
+                return "Player won";
+            else 
+                return "Tie";
+            default:
+                return "Ivalid sing";
+    }
+}
 
-const blue = document.createElement("h3");
-blue.textContent = "I'm blue h3!";
-blue.style.color = "blue";
-container.appendChild(blue);
+const buttons = document.querySelectorAll("button");
 
-const div = document.createElement("div");
-div.style.border = "1px solid black";
-div.style.background = "pink";
-
-const h1 = document.createElement("h1");
-h1.textContent = "I'm in a div";
-
-
-const p = document.createElement("p");
-p.textContent = "MEE TOO!";
-
-div.appendChild(h1);
-div.appendChild(p);
-
-container.appendChild(div);
-
-
-const buttons = document.querySelectorAll("#container");
-buttons.forEach(button => {
+buttons.forEach((button) => {
     button.addEventListener("click", () => {
-        alert(button.id);
-    })
-})
+        let res = playRound(button.id, computerChoice());
+        if (res === "Player won") playerScore++;
+        else if (res === "Player lose") computerScore++;
+        console.log(`Score: player - ${playerScore} , comuter - ${computerScore}`);
+        scoreField.textContent = `Score: player - ${playerScore} , comuter - ${computerScore}`;
+    });
+});
+
+const scoreField = document.createElement("div");
+scoreField.textContent = `Score: player - ${playerScore} , comuter - ${computerScore}`;
+
+
+const container = document.querySelector("#container");
+container.appendChild(scoreField);
